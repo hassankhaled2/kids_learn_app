@@ -19,47 +19,53 @@ class _HomeScreenState extends State<HomeScreen> {
     gameover = false;
     score = 0;
     item1 = [
-      ItemModel(value: 'Lion', name: 'Lion', img: 'assets/images/Stylized-Cartoon-Lion.svg'),
+      ItemModel(value: 'Lion', name: 'Lion', img: 'assets/images/lion.png'),
       ItemModel(
         value: 'panda',
         name: 'panda',
-        img: 'assets/images/image-from-rawpixel-id-6483614-svg.svg',
+        img: 'assets/images/panda.png',
       ),
       ItemModel(
         value: 'camel',
         name: 'camel',
-        img: 'assets/images/camal.jpg',
+        img: 'assets/images/camel.png',
       ),
       ItemModel(
         value: 'dog',
         name: 'dog',
-        img: 'assets/images/dog.jpg',
+        img: 'assets/images/dog.png',
       ),
       ItemModel(
         value: 'cat',
         name: 'cat',
-        img: 'assets/images/cat.jpg',
+        img: 'assets/images/cat.png',
       ),
       ItemModel(
         value: 'horse',
         name: 'horse',
-        img: 'assets/images/horse.jpg',
+        img: 'assets/images/horse.png',
       ),
       ItemModel(
         value: 'sheep',
         name: 'sheep',
-        img: 'assets/images/sheep.jpg',
+        img: 'assets/images/sheep.png',
       ),
       ItemModel(
         value: 'fox',
         name: 'fox',
-        img: 'assets/images/fox.jpg',
+        img: 'assets/images/fox.png',
       ),
       ItemModel(
         value: 'cow',
         name: 'cow',
-        img: 'assets/images/cow.jpg',
+        img: 'assets/images/cow.png',
       ),
+      ItemModel(
+        value: 'hen',
+        name: 'hen',
+        img: 'assets/images/hen.png',
+      ),
+
     ];
     item2 = List<ItemModel>.from(item1);
     // عرض بشكل عشوائى
@@ -88,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.all(15),
                 child: Row(
                   children: [
-                    SizedBox(width: 180,),
+                    SizedBox(width: 140,),
         
                     Text('Score:',),
                     SizedBox(width: 10,),
@@ -108,33 +114,49 @@ class _HomeScreenState extends State<HomeScreen> {
                               margin: EdgeInsets.all(8),
                               child: Draggable<ItemModel>(
                                 feedback: CircleAvatar(
-                                  child: SvgPicture.asset(
-        
+                                  // child: SvgPicture.asset(
+                                  //
+                                  //   item.img,
+                                  //
+                                  // ),
+                                  backgroundImage:AssetImage(
+
                                     item.img,
-        
-                                  ),
+
+                                  ) ,
+
                                   backgroundColor: Colors.white,
                                   radius: 20,
                                 ),
                                 data: item,
                                 childWhenDragging: CircleAvatar(
-                                  child: SvgPicture.asset(
-        
+                                  // child: SvgPicture.asset(
+                                  //
+                                  //   item.img,
+                                  //
+                                  // ),
+                                  backgroundImage:AssetImage(
+
                                     item.img,
-        
-                                  ),
-                                  backgroundColor: Colors.white,
+
+                                  ) ,
+                                  backgroundColor: Colors.red,
         
                                   radius: 20,
                                 ),
                                 child:CircleAvatar(
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: Colors.white,
                                   radius: 30,
-                                  child: SvgPicture.asset(
-                                    cacheColorFilter: true,
-                                     item.img,
-        
-                                  ),
+                                  backgroundImage:AssetImage(
+
+                                    item.img,
+
+                                  ) ,
+                                  // child: SvgPicture.asset(
+                                  //   cacheColorFilter: true,
+                                  //    item.img,
+                                  //
+                                  // ),
                                 ),
                               ),
                             ))
@@ -200,6 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               if (gameover)
+
               Center(
                 child: Column(
                   // crossAxisAlignment: CrossAxisAlignment.center,
@@ -227,12 +250,13 @@ class _HomeScreenState extends State<HomeScreen> {
               if (gameover)
               Center(
                 child: ElevatedButton(
+                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.white)),
                     onPressed: () {
                       setState(() {
                         initGame();
                       });
                     },
-                    child: Text('New Game')),
+                    child: Text('New Game',style: TextStyle(color: Colors.teal,),)),
               ),
             ],
           ),
