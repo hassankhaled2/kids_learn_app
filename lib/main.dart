@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/play_game.dart';
+import 'package:kids_learn_app/ui/screens/home_screen.dart';
+import 'package:kids_learn_app/utils/themes/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      theme: appThemeData[AppTheme.blueDark],
       home:  HomeScreen(),
     );
   }

@@ -1,71 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kids_learn_app/utils/app_strings.dart';
+import 'package:kids_learn_app/utils/themes/app_colors.dart';
 
-import 'item_model.dart';
+import '../../models/item_model.dart';
+import '../../utils/app_assets.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class playGameScreen extends StatefulWidget {
+  const playGameScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<playGameScreen> createState() => _playGameScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _playGameScreenState extends State<playGameScreen> {
   List<ItemModel> item1 = [];
   List<ItemModel> item2 = [];
   late int score;
   bool gameover = false;
+
   initGame() {
     gameover = false;
     score = 0;
     item1 = [
-      ItemModel(value: 'Lion', name: 'Lion', img: 'assets/images/lion.png'),
+      ItemModel(value: AppStrings.lionAnimal, name: AppStrings.lionAnimal, img: AppAssets.lionImage),
       ItemModel(
-        value: 'panda',
-        name: 'panda',
-        img: 'assets/images/panda.png',
+        value: AppStrings.pandaAnimal,
+        name: AppStrings.pandaAnimal,
+        img: AppAssets.pandaImage,
       ),
       ItemModel(
-        value: 'camel',
-        name: 'camel',
-        img: 'assets/images/camel.png',
+        value: AppStrings.camelAnimal,
+        name: AppStrings.camelAnimal,
+        img:  AppAssets.camelImage,
       ),
       ItemModel(
-        value: 'dog',
-        name: 'dog',
-        img: 'assets/images/dog.png',
+        value: AppStrings.dogAnimal,
+        name: AppStrings.dogAnimal,
+        img: AppAssets.dogImage,
       ),
       ItemModel(
-        value: 'cat',
-        name: 'cat',
-        img: 'assets/images/cat.png',
+        value:AppStrings.catAnimal,
+        name: AppStrings.catAnimal,
+        img: AppAssets.catImage,
       ),
       ItemModel(
-        value: 'horse',
-        name: 'horse',
-        img: 'assets/images/horse.png',
+        value:AppStrings.horseAnimal,
+        name: AppStrings.horseAnimal,
+        img: AppAssets.horseImage,
       ),
       ItemModel(
-        value: 'sheep',
-        name: 'sheep',
-        img: 'assets/images/sheep.png',
+        value: AppStrings.sheepAnimal,
+        name: AppStrings.sheepAnimal,
+        img: AppAssets.sheepImage,
       ),
       ItemModel(
-        value: 'fox',
-        name: 'fox',
-        img: 'assets/images/fox.png',
+        value: AppStrings.foxAnimal,
+        name:  AppStrings.foxAnimal,
+        img:  AppAssets.foxImage,
       ),
       ItemModel(
-        value: 'cow',
-        name: 'cow',
-        img: 'assets/images/cow.png',
+        value: AppStrings.cowAnimal,
+        name: AppStrings.cowAnimal,
+        img: AppAssets.cowImage,
       ),
       ItemModel(
-        value: 'hen',
-        name: 'hen',
-        img: 'assets/images/hen.png',
+        value: AppStrings.henAnimal,
+        name: AppStrings.henAnimal,
+        img:AppAssets.henImage,
       ),
-
     ];
     item2 = List<ItemModel>.from(item1);
     // عرض بشكل عشوائى
@@ -89,18 +92,22 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-        
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: Row(
                   children: [
-                    SizedBox(width: 140,),
-        
-                    Text('Score:',),
-                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 140,
+                    ),
+                    Text(
+                      AppStrings.scoreText,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       '$score',
-                      style: TextStyle(fontSize: 30,color: Colors.teal),
+                      style: TextStyle(fontSize: 30, color: AppColors.pinkColor),
                     ),
                   ],
                 ),
@@ -119,11 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //   item.img,
                                   //
                                   // ),
-                                  backgroundImage:AssetImage(
-
+                                  backgroundImage: AssetImage(
                                     item.img,
-
-                                  ) ,
+                                  ),
 
                                   backgroundColor: Colors.white,
                                   radius: 20,
@@ -135,23 +140,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                   //   item.img,
                                   //
                                   // ),
-                                  backgroundImage:AssetImage(
-
+                                  backgroundImage: AssetImage(
                                     item.img,
-
-                                  ) ,
+                                  ),
                                   backgroundColor: Colors.red,
-        
+
                                   radius: 20,
                                 ),
-                                child:CircleAvatar(
+                                child: CircleAvatar(
                                   backgroundColor: Colors.white,
                                   radius: 30,
-                                  backgroundImage:AssetImage(
-
+                                  backgroundImage: AssetImage(
                                     item.img,
-
-                                  ) ,
+                                  ),
                                   // child: SvgPicture.asset(
                                   //   cacheColorFilter: true,
                                   //    item.img,
@@ -168,20 +169,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         .map(
                           (item) => DragTarget<ItemModel>(
                             builder: (BuildContext context,
-                                List<dynamic> accepted, List<dynamic> rejected) {
+                                List<dynamic> accepted,
+                                List<dynamic> rejected) {
                               return Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      color:
-                                          item.accept ? Colors.grey[200] : Colors.grey[300]),
+                                      color: item.accept
+                                          ? Colors.grey[200]
+                                          : Colors.grey[300]),
                                   alignment: Alignment.center,
-                                  height: MediaQuery.of(context).size.width /8,
+                                  height: MediaQuery.of(context).size.width / 8,
                                   width: MediaQuery.of(context).size.width / 2,
                                   margin: EdgeInsets.all(8),
                                   child: Text(
                                     item.name,
-                                    style: Theme.of(context).textTheme.titleLarge,
-        // Text, Container,
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
+                                    // Text, Container,
                                   ));
                             },
                             onAcceptWithDetails: (re) {
@@ -214,50 +218,58 @@ class _HomeScreenState extends State<HomeScreen> {
                         )
                         .toList(),
                   ),
-        //
-        
                   //
-        
-        
+
+                  //
                 ],
               ),
               if (gameover)
-
-              Center(
-                child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.center,
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Game over',style: TextStyle(color:Colors.red ),),
+                Center(
+                  child: Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            AppStrings.gameOverText,
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
                       ),
-                    ),
-        
-                    Text(
-                      result(),
-                      style: Theme.of(context).textTheme.headline3?.copyWith(
-                        color: Colors.grey[500], // This sets the text color to gray
+                      Text(
+                        result(),
+                        style: Theme.of(context).textTheme.headline3?.copyWith(
+                              color: Colors.grey[
+                                  500], // This sets the text color to gray
+                            ),
                       ),
-                    ),
-                    SizedBox(height: 20,),
-        
-        
-                  ],
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               if (gameover)
-              Center(
-                child: ElevatedButton(
-                  style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.white)),
-                    onPressed: () {
-                      setState(() {
-                        initGame();
-                      });
-                    },
-                    child: Text('New Game',style: TextStyle(color: Colors.teal,),)),
-              ),
+                Center(
+                  child: ElevatedButton(
+                      // style: ButtonStyle(
+                      //     backgroundColor:
+                      //         MaterialStatePropertyAll(Colors.white)
+                      // ),
+                      onPressed: () {
+                        setState(() {
+                          initGame();
+                        });
+                      },
+                      child: Text(
+                        AppStrings.newGameText,
+                        style: TextStyle(
+                          color:AppColors.white,
+                        ),
+                      )),
+                ),
             ],
           ),
         ),
@@ -267,9 +279,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String result() {
     if (score == 100) {
-      return 'Awesome';
+      return AppStrings.awesomeText;
     } else {
-      return 'Play Again to get better Score';
+      return AppStrings.playAgaintogetbetterScoreText;
     }
   }
 }

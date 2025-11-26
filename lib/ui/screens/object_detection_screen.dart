@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/ui/widgets/custom_elevated_button.dart';
 import 'package:kids_learn_app/utils/spacing.dart';
+import 'package:kids_learn_app/utils/themes/app_colors.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:dotted_border/dotted_border.dart';
+
+import '../widgets/defualt_app_bar_widget.dart';
 class ObjectDetectionScreen extends StatefulWidget {
   const ObjectDetectionScreen({super.key});
 
@@ -27,6 +29,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
       setState(() {});
     });
   }
+  final Set<String> _allowedLabels = {'Fox', 'Sheep', 'Horse', 'Cat', 'Dog'};
 
   Future<void> loadModel() async {
     String? res = await Tflite.loadModel(
@@ -50,59 +53,94 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
   }
 
   Future detectimage(File image) async {
+    // Define a higher confidence  for display
+    const double requiredConfidence = 0.70; // 70%
+
     var recognitions = await Tflite.runModelOnImage(
+      //numResults
+
+      //--> How many answers you want.
+
+      // threshold
+
+      //--> Confidence minimum.
+
+      // imageMean / imageStd
+
+      //--> Normalize image pixels correctly.
       path: image.path,
       numResults: 6,
       threshold: 0.05,
       imageMean: 127.5,
       imageStd: 127.5,
     );
+
     setState(() {
       _recognitions = recognitions;
-      // v = recognitions.toString();
+      cleanLabel = ''; // Reset label
+
       if (recognitions != null && recognitions.isNotEmpty) {
-        v = recognitions[0]['label'];
-        print('Label: $v'); // Output: Label: 0 Dog
+        // Get the top recognition result
+        //When you call:
 
-        // If you want to remove the index number (remove "0 " from "0 Dog")
-        //    ^ - Matches the start of the string
-        //
-        //     \d+ - Matches one or more digits (0-9)
-        //
-        //     \s - Matches a whitespace character (space, tab, etc.)
-        //
-        //     So ^\d+\s means: "Find a number followed by a space at the beginning of the string"
-        // Replaces the first occurrence of the pattern with an empty string (removes it)
+        // var recognitions = await Tflite.runModelOnImage(...);
 
-        cleanLabel = v.replaceFirst(RegExp(r'^\d+\s'), '');
-        print('Clean Label: $cleanLabel');
-        // dataList = List<Map<String, dynamic>>.from(jsonDecode(v));
+        // It returns a list of detected objects, like this:
+
+        // [
+        //   { "label": "0 Dog", "confidence": 0.87 },
+        //   { "label": "1 Cat", "confidence": 0.30 },
+        //   { "label": "2 Horse", "confidence": 0.05 }
+        // ]
+        //The results are sorted by confidence score (highest first).
+        var topRecognition = recognitions[0];
+
+        // 1. Get the confidence score
+        double confidence = topRecognition['confidence'];
+
+        // 2. Get the raw label (e.g., "0 Dog")
+        String rawLabel = topRecognition['label'];
+
+        // 3. Remove the index (e.g., "Dog")
+        String currentLabel = rawLabel.replaceFirst(RegExp(r'^\d+\s'), '');
+
+        print('Detected Label: $currentLabel with confidence: $confidence');
+
+        // CHECK 1: Is the confidence high enough?
+        if (confidence >= requiredConfidence) {
+          // CHECK 2: Is the confidently detected label one of the allowed labels?
+          if (_allowedLabels.contains(currentLabel)) {
+            // Display the confident and allowed label
+            cleanLabel = currentLabel;
+            v = rawLabel;
+          } else {
+            // Confident detection, but it's not a supported animal (e.g., Human/Car)
+            cleanLabel = 'Not a supported animal.';
+          }
+        } else {
+          // Detection was found, but confidence is too low (e.g., below 70%)
+          cleanLabel = 'Detection too weak. Try another image.';
+        }
+      } else {
+        // recognitions list was empty
+        cleanLabel = 'No detection found.';
       }
     });
 
-    // Map<String,dynamic>s =_recognitions;
-    // print(v[2]);
     print(_recognitions);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 90,
-        title: const Text(
-          'Object Detection',
-          style: TextStyle(color: Colors.white, fontSize: 22),
-        ),
-        backgroundColor: Colors.deepPurple,
-        centerTitle: true,
-      ),
+      appBar:  getDefaultAppBarWidget(centerTitle: true, context: context, title: 'Animals Detection ', color: AppColors.white54Color, fontWeight: FontWeight.w100),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text('Note: Only Fox, Sheep, Horse, Cat and Dog can be detected.',style:TextStyle(color: AppColors.white70),),
+              verticalSpace(50),
               if (_image != null)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
@@ -119,7 +157,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
                   child: DottedBorder(
                     dashPattern: const [10, 6],
                     strokeWidth: 2,
-                    color: Colors.deepPurple,
+                    color: AppColors.pinkColor,
                     borderType: BorderType.RRect,
                     radius: const Radius.circular(16),
                     padding: const EdgeInsets.all(50),
@@ -129,7 +167,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
                         Image.asset(
                           'assets/images/upload-102.png',
                           height: 70,
-                          color: Colors.deepPurple,
+                          color: AppColors.pinkColor,
                         ),
                         const SizedBox(height: 16),
                         const Text(
@@ -157,7 +195,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
               ElevatedButton(
                 onPressed: _pickImage,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.deepPurple,
+                  // backgroundColor: Colors.deepPurple,
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 14),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
@@ -165,7 +203,8 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
                 ),
                 child: const Text(
                   'Upload Image',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16,color:AppColors.white70),
+
                 ),
               ),
 
