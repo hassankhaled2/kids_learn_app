@@ -12,4 +12,6 @@ class AppAssets {
   static const String foxImage = 'assets/images/fox.png';
   static const String cowImage = 'assets/images/cow.png';
   static const String henImage = 'assets/images/hen.png';
+  static const String uploadImage = 'assets/images/upload.png';
+
 }
