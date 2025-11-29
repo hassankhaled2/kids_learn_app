@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kids_learn_app/core/app_strings.dart';
 import 'package:kids_learn_app/presentation/screens/play_game_screen.dart';
 
 
@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
     return  Scaffold(
         // appBar: getDefaultAppBarWidget(centerTitle: null, context: null, title: '', color: null, backgroundColor: null, fontWeight: null),
         // appBar: AppBar(title: Text('Kids learn App',style: TextStyle(color: AppColors.white54Color,fontWeight: FontWeight.w100),),elevation: 20,centerTitle: true,),
-        appBar:       getDefaultAppBarWidget(centerTitle: true, context: context, title: 'Kids learn App', color: AppColors.white54Color, fontWeight: FontWeight.w100),
+        appBar:       getDefaultAppBarWidget(centerTitle: true, context: context, title: AppStrings.kidsLearnAppText, color: AppColors.white54Color, fontWeight: FontWeight.w100),
 
           body: SafeArea(
         child: SingleChildScrollView(
@@ -77,12 +77,12 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                       ),
                     ],
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                        Text(
 
-                        '🚀  Welcome, Little Explorer! 🚀',
+                        AppStrings.welcomeLittleExplorerText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
@@ -92,14 +92,14 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                         ),
                       ),
                       SizedBox(height: 10),
-                      const Icon(
+                      Icon(
                         Icons.pets,
                         size: 50,
                         color: Colors.deepPurpleAccent,
                       ),
                       SizedBox(height: 15),
-                      const Text(
-                        'It’s time to explore something exciting!',
+                      Text(
+                        AppStrings.exploreSomethingExcitingText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 16,
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
 
               verticalSpace(50),
 
-              customElevatedButton(text: showMore ? "Animals" : "Animals", onPressed: toggleMenu
+              customElevatedButton(text: showMore ? AppStrings.animalsText : AppStrings.animalsText, onPressed: toggleMenu
               ),
               SizeTransition(
                 sizeFactor: expandAnimation, axisAlignment: -1,
@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                     ),
                     verticalSpace(8),
                     customElevatedButton(
-                      text: "Clarify Animal",
+                      text: AppStrings.clarifyAnimalText,
                       onPressed: ()
                       {
                         Navigator.of(context).push(

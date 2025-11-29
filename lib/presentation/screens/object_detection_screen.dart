@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:kids_learn_app/core/app_strings.dart';
 import '../../core/themes/app_colors.dart';
 import '../../core/defualt_app_bar_widget.dart';
 import '../widgets/detect_animal_widgets/detection_body_content_widget.dart';
@@ -17,7 +18,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
   final ImagePicker _picker = ImagePicker();
 
   File? _selectedImage;
-  String _detectionResult = 'Ready to detect!';
+  String _detectionResult = AppStrings.readyToDetectText;
   bool _isModelLoaded = false;
 
   @override
@@ -31,7 +32,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
     setState(() {
       _isModelLoaded = loaded;
       if (!loaded) {
-        _detectionResult = 'Failed to load detection model. Check assets.';
+        _detectionResult = AppStrings.failedToLoadDetectionModelText;
       }
     });
   }
@@ -40,7 +41,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
   Future<void> _pickImageAndDetect() async {
     // 1. Guard check for model loading
     if (!_isModelLoaded) {
-      setState(() => _detectionResult = 'Model not loaded yet.');
+      setState(() => _detectionResult = AppStrings.modelNotLoadedText);
       return;
     }
 
@@ -55,7 +56,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
       // 3. Update UI to show selected image and detecting status
       setState(() {
         _selectedImage = imageFile;
-        _detectionResult = 'Detecting...';
+        _detectionResult =AppStrings.detectingText;
       });
 
       // 4. Run detection and update result
@@ -68,7 +69,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
     } catch (e) {
       print('Error picking or detecting image: $e');
       setState(() {
-        _detectionResult = 'An error occurred. Check permissions.';
+        _detectionResult = AppStrings.anErrorOccurredCheckPermissionsText;
       });
     }
   }
@@ -78,7 +79,7 @@ class _ObjectDetectionScreenState extends State<ObjectDetectionScreen> {
     return Scaffold(
       appBar: getDefaultAppBarWidget(
         context: context,
-        title: 'Animal Detection',
+        title: AppStrings.animalDetectionText,
         centerTitle: true,
         color: AppColors.white54Color,
         fontWeight: FontWeight.w100,

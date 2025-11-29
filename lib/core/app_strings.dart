@@ -19,7 +19,22 @@ class AppStrings
   static const  newGameText = "New Game";
   static const  awesomeText = "Awesome";
   static const  playAgaintogetbetterScoreText = "Play Again to get better Score";
-  //---------------------- Bottom Navigation bar Texts  -----------------
+
+  //-------------------- object detection screen -------------------
+  static const  readyToDetectText = "Ready to detect!";
+  static const failedToLoadDetectionModelText = "Failed to load detection model. Check assets.'";
+  static const modelNotLoadedText = "Model not loaded yet.";
+  static const detectingText = "Detecting...";
+  static const anErrorOccurredCheckPermissionsText = "An error occurred. Check permissions.";
+  static const animalDetectionText = "Animal Detection";
+  //---------------------- Home Screen -----------------
+  static const  kidsLearnAppText = "Kids learn App";
+  static const welcomeLittleExplorerText = "Failed to load detection model. Check assets.'";
+  static const animalsText = "Animals";
+  static const clarifyAnimalText = "Clarify Animal";
+  static const exploreSomethingExcitingText = "It’s time to explore something exciting!";
+
+
 //---------------------- Login & register -----------------
 
 
