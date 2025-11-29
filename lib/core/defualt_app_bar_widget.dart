@@ -1,8 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/utils/themes/app_colors.dart';
-import 'package:kids_learn_app/utils/themes/font_size.dart';
+
+import 'themes/app_colors.dart';
+import 'themes/font_size.dart';
+
 
 AppBar getDefaultAppBarWidget({required bool centerTitle,required BuildContext context, required String title, required Color color , List<Widget>? actions,required FontWeight fontWeight,Color iconTheme = AppColors.white54Color}) {
   return AppBar(

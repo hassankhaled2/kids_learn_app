@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/ui/widgets/selected_image_display.dart';
-
-import 'package:kids_learn_app/utils/spacing.dart';
-import 'package:kids_learn_app/ui/widgets/custom_elevated_button.dart';
-
+import 'package:kids_learn_app/presentation/widgets/detect_animal_widgets/selected_image_display.dart';
+import '../../../core/spacing.dart';
+import '../../../core/custom_elevated_button.dart';
 import 'detection_result_text.dart';
 import 'image_placeholder_widget.dart';
 import 'note_text_widget.dart';
@@ -34,18 +32,16 @@ class DetectionBodyContent extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Informational Note
             const NoteTextWidget(),
             verticalSpace(50),
 
-            // Image Display or Placeholder
             selectedImage != null
                 ? SelectedImageDisplay(imageFile: selectedImage!)
                 : ImagePlaceholderWidget(onTap: onUploadPressed),
 
             verticalSpace(30),
 
-            // Upload Button
+
             customElevatedButton(
               text: "Upload Image",
               onPressed: onUploadPressed,
@@ -58,7 +54,6 @@ class DetectionBodyContent extends StatelessWidget {
 
             verticalSpace(20),
 
-            // Loading Indicator
             if (!isModelLoaded)
               const CircularProgressIndicator(),
           ],

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-
-// Import project utilities (ensure paths are correct for your project)
-import 'package:kids_learn_app/utils/app_assets.dart';
-import 'package:kids_learn_app/utils/themes/app_colors.dart';
+import '../../../core/app_assets.dart';
+import '../../../core/themes/app_colors.dart';
 
 class ImagePlaceholderWidget extends StatelessWidget {
   final VoidCallback onTap;

@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/ui/screens/object_detection_screen.dart';
-import 'package:kids_learn_app/ui/screens/play_game_screen.dart';
-import 'package:kids_learn_app/utils/spacing.dart';
-import 'package:kids_learn_app/utils/themes/app_colors.dart';
+import 'package:kids_learn_app/presentation/screens/play_game_screen.dart';
 
-import '../widgets/custom_elevated_button.dart';
-import '../widgets/defualt_app_bar_widget.dart';
+
+import '../../core/spacing.dart';
+import '../../core/themes/app_colors.dart';
+import '../../core/custom_elevated_button.dart';
+import '../../core/defualt_app_bar_widget.dart';
+import 'object_detection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -127,7 +128,8 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (_) => playGameScreen(),
+                            builder: (_) =>
+                                PlayGameScreen(),
                           ),
                         );
                       },

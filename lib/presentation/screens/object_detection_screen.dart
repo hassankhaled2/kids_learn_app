@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kids_learn_app/utils/themes/app_colors.dart';
-import '../widgets/defualt_app_bar_widget.dart';
-import '../widgets/detection_body_content_widget.dart';
-import '../widgets/tFLite_helper_.dart';
+import '../../core/themes/app_colors.dart';
+import '../../core/defualt_app_bar_widget.dart';
+import '../widgets/detect_animal_widgets/detection_body_content_widget.dart';
+import '../widgets/detect_animal_widgets/tFLite_helper_.dart';
 
 class ObjectDetectionScreen extends StatefulWidget {
   const ObjectDetectionScreen({super.key});

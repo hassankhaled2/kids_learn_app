@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/utils/themes/size_config.dart';
+import 'package:kids_learn_app/core/size_config.dart';
 import 'app_colors.dart';
 import 'font_family.dart';
 import 'font_size.dart';
