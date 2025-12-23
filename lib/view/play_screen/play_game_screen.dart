@@ -2,15 +2,16 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/core/spacing.dart';
 
-import '../../core/app_assets.dart';
-import '../../core/app_strings.dart';
+import '../../components/play_game_widgets/draggable_board.dart';
+import '../../components/play_game_widgets/draggable_target.dart';
+import '../../components/play_game_widgets/game_over_overlay.dart';
+import '../../components/play_game_widgets/score board.dart';
+import '../../constants/app_assets.dart';
+import '../../constants/app_strings.dart';
+import '../../constants/spacing.dart';
 import '../../models/item_model.dart';
-import '../widgets/play_game_widgets/draggable_board.dart';
-import '../widgets/play_game_widgets/draggable_target.dart';
-import '../widgets/play_game_widgets/game_over_overlay.dart';
-import '../widgets/play_game_widgets/score board.dart';
+
 
 class PlayGameScreen extends StatefulWidget {
   const PlayGameScreen({super.key});

@@ -29,7 +29,7 @@ class AppStrings
   static const animalDetectionText = "Animal Detection";
   //---------------------- Home Screen -----------------
   static const  kidsLearnAppText = "Kids learn App";
-  static const welcomeLittleExplorerText = "Failed to load detection model. Check assets.'";
+  static const welcomeLittleExplorerText = "🚀  Welcome, little explorer! \n Big Discoveries start here 🚀 ";
   static const animalsText = "Animals";
   static const clarifyAnimalText = "Clarify Animal";
   static const exploreSomethingExcitingText = "It’s time to explore something exciting!";
