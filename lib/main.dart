@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/presentation/screens/home_screen.dart';
+import 'package:kids_learn_app/view/home_screen/home_screen.dart';
+
+import 'constants/themes/app_theme.dart';
 
 
-import 'core/themes/app_theme.dart';
 
 void main() {
   runApp(const MyApp());

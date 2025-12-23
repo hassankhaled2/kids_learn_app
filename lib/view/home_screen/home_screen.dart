@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kids_learn_app/core/app_strings.dart';
-import 'package:kids_learn_app/presentation/screens/play_game_screen.dart';
+import 'package:kids_learn_app/view/play_screen/play_game_screen.dart';
 
-
-import '../../core/spacing.dart';
-import '../../core/themes/app_colors.dart';
-import '../../core/custom_elevated_button.dart';
-import '../../core/defualt_app_bar_widget.dart';
-import 'object_detection_screen.dart';
+import '../../constants/app_strings.dart';
+import '../../constants/custom_elevated_button.dart';
+import '../../constants/defualt_app_bar_widget.dart';
+import '../../constants/spacing.dart';
+import '../../constants/themes/app_colors.dart';
+import '../../view/object_detection_screen/object_detection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -77,28 +76,28 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                       ),
                     ],
                   ),
-                  child: const Column(
+                  child:  Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                       Text(
+                       const Text(
 
                         AppStrings.welcomeLittleExplorerText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'Montserrat',
-                          fontSize: 24,
+                          fontSize: 21,
                           fontWeight: FontWeight.w800,
                           color: Colors.pink,
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Icon(
+                      verticalSpace(12),
+                      const Icon(
                         Icons.pets,
                         size: 50,
                         color: Colors.deepPurpleAccent,
                       ),
-                      SizedBox(height: 15),
-                      Text(
+                      verticalSpace(15),
+                      const Text(
                         AppStrings.exploreSomethingExcitingText,
                         textAlign: TextAlign.center,
                         style: TextStyle(
